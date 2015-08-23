@@ -1,9 +1,8 @@
 package com.mygoogle.myapp;
 
-import java.text.DateFormat;
+
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -31,35 +30,15 @@ import com.google.appengine.api.datastore.Query.FilterOperator;
  * Handles requests for the application home page.
  */
 @Controller
-public class HomeController {
+@RequestMapping(value = "/dataStore")
+public class DataStoreController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		model.addAttribute("faceBookAppKey", "450354071802804" );
-		model.addAttribute("googleAppKey", "AIzaSyAAa8y_rcgIwP-jESGq-PQNmgBtldWrtGo" );
-		
-		return "home";
-	}
-		
+	private static final Logger logger = LoggerFactory.getLogger(DataStoreController.class);
 	
 	@RequestMapping(value="/addCustomerPage", method = RequestMethod.GET)
 	public String getAddCustomerPage(ModelMap model) {
 
-		return "add";
-
+		return "dataStore/add";
 	}
 	
 	@RequestMapping(value="/add", method = RequestMethod.POST)
@@ -79,7 +58,7 @@ public class HomeController {
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         datastore.put(customer);
         
-        return new ModelAndView("redirect:list");
+        return new ModelAndView("redirect:/dataStore");
         
 	}
 		
@@ -96,7 +75,7 @@ public class HomeController {
 		Entity e = pq.asSingleEntity();
 		model.addAttribute("customer",  e);
 		
-		return "update";
+		return "dataStore/update";
 
 	}
 	
@@ -122,7 +101,7 @@ public class HomeController {
         datastore.put(customer);
         
         //return to list
-        return new ModelAndView("redirect:list");
+        return new ModelAndView("redirect:/dataStore");
         
 	}
 		
@@ -141,13 +120,12 @@ public class HomeController {
         datastore.delete(customer.getKey());
         
         //return to list
-        return new ModelAndView("redirect:../list");
+        return new ModelAndView("redirect:/dataStore");
         
 	}
 	
-	
 	//get all customers
-	@RequestMapping(value="/list", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String listCustomer(ModelMap model) {
 
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -156,7 +134,7 @@ public class HomeController {
 	    
 	    model.addAttribute("customerList",  customers);
 	    
-		return "list";
+		return "dataStore/list";
 
 	}
 }

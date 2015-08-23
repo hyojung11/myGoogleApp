@@ -1,25 +1,30 @@
 <!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<html>
 <head>	
-	<title>Home</title>
-	<meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="/resources/style.css">    	
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--  IE 호환성 모드 메타 태그 -->
+	<title>Home</title>	
+    <link rel="stylesheet" type="text/css" href="/resources/style.css">          
 </head>
 <body>
 <h1>	Hello world!</h1>
+<!--[if lt IE 7]>
+	<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
 <P>  The time on the server is ${serverTime}. </P>
-
+http://blog.aliencube.org/ko/2013/07/28/html5-boilerplate-and-more-for-seamless-cross-browsing/placeholder
 <div id="wrapper">
-
 	<ul class="menu">
-		<li class="item1"><a href="#">Friends <span>340</span></a>
+		<li class="item1"><a href="#">Project Google</a>
 			<ul>
-				<li class="subitem1"><a href="#">Cute Kittens <span>14</span></a></li>
-				<li class="subitem2"><a href="#">Strange “Stuff” <span>6</span></a></li>
-				<li class="subitem3"><a href="#">Automatic Fails <span>2</span></a></li>
+				<li class="subitem1"><a href="/map">GoogleMap</a></li>
+				<li class="subitem2"><a href="/dataStore">GoogleDataStore</a></li>
 			</ul>
 		</li>
 		<li class="item2"><a href="#">Videos <span>147</span></a>
@@ -55,17 +60,17 @@
 </div>
 
 
- <button type="button" class="ct-btn white" onclick="facebooklogin(); return false;">로그인</button>
- <button type="button" class="ct-btn white" onclick="facebooklogout(); return false;">로그아웃</button>
- <input type="text" id="user_id">
- <div id="map-canvas"></div>
+<button type="button" class="ct-btn white" onclick="facebooklogin(); return false;">로그인</button>
+<button type="button" class="ct-btn white" onclick="facebooklogout(); return false;">로그아웃</button>
+<input type="text" id="user_id">
 <div id="fb-root"></div>
+
 <script src="/resources/jquery-1.11.3.min.js"></script>    
 <script src="http://connect.facebook.net/ko_KR/all.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 <script>
+var key = <c:out value="${faceBookAppKey}"/>
 FB.init({
-    appId      : '450354071802804', //사용자 앱ID
+    appId      : key,
     status     : true,
     xfbml      : true,
     version    : 'v2.4'
@@ -80,15 +85,7 @@ FB.init({
 		}(document, 'script', 'facebook-jssdk'));
 </script>
 <script type="text/javascript">		
-	 		
-	var map = "";
-	function initialize() {
-	  map = new google.maps.Map(document.getElementById('map-canvas'), {
-	    zoom: 8,
-	    center: {lat: -34.397, lng: 150.644}
-	  });
-	}	
-	
+	 	
 	function facebooklogin() {				  
 		  FB.login(function(response) {
 			  if (response.authResponse) {				  
@@ -99,7 +96,7 @@ FB.init({
 				     }); 				       
 			  } else {
 			       //오류가 났거나 연동이 실패 했을때 처리 하는부분.....
-				  alert("실패");
+				  alert("로그인취소");
 			         }
 			       } , {
 			       scope: 'publish_actions, email', 
@@ -111,10 +108,9 @@ FB.init({
 		FB.logout(function(response) {
 			  // user is now logged out
 			  alert("성공");
+			  $("#user_id").val();
 			});
-	}
-		
-	 google.maps.event.addDomListener(window, 'load', initialize);			      
+	}	      
 	 
 	 $(function() {
 			
