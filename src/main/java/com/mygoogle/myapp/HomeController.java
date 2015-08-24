@@ -32,8 +32,8 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
-		model.addAttribute("faceBookAppKey", "450354071802804" );
-		model.addAttribute("googleAppKey", "AIzaSyAAa8y_rcgIwP-jESGq-PQNmgBtldWrtGo" );
+		model.addAttribute("faceBookAppKey", "#" );
+		model.addAttribute("googleAppKey", "#" );
 		
 		return "home";
 	}
