@@ -21,44 +21,21 @@
 http://blog.aliencube.org/ko/2013/07/28/html5-boilerplate-and-more-for-seamless-cross-browsing/placeholder
 <div id="wrapper">
 	<ul class="menu">
-		<li class="item1"><a href="#">Project Google</a>
+		<li class="item1"><a href="#">Project google</a>
 			<ul>
 				<li class="subitem1"><a href="/map">GoogleMap</a></li>
 				<li class="subitem2"><a href="/dataStore">GoogleDataStore</a></li>
 			</ul>
 		</li>
-		<li class="item2"><a href="#">Videos <span>147</span></a>
+		<li class="item2"><a href="#">Project faceBook</a>
 			<ul>
-				<li class="subitem1"><a href="#">Cute Kittens <span>14</span></a></li>
-				<li class="subitem2"><a href="#">Strange “Stuff” <span>6</span></a></li>
-				<li class="subitem3"><a href="#">Automatic Fails <span>2</span></a></li>
+				<li class="subitem1"><a href="#">#</a></li>
+				<li class="subitem2"><a href="#">#</a></li>
+				<li class="subitem3"><a href="#">#</a></li>
 			</ul>
-		</li>
-		<li class="item3"><a href="#">Galleries <span>340</span></a>
-			<ul>
-				<li class="subitem1"><a href="#">Cute Kittens <span>14</span></a></li>
-				<li class="subitem2"><a href="#">Strange “Stuff” <span>6</span></a></li>
-				<li class="subitem3"><a href="#">Automatic Fails <span>2</span></a></li>
-			</ul>
-		</li>
-		<li class="item4"><a href="#">Podcasts <span>222</span></a>
-			<ul>
-				<li class="subitem1"><a href="#">Cute Kittens <span>14</span></a></li>
-				<li class="subitem2"><a href="#">Strange “Stuff” <span>6</span></a></li>
-				<li class="subitem3"><a href="#">Automatic Fails <span>2</span></a></li>
-			</ul>
-		</li>
-		<li class="item5"><a href="#">Robots <span>16</span></a>
-			<ul>
-				<li class="subitem1"><a href="#">Cute Kittens <span>14</span></a></li>
-				<li class="subitem2"><a href="#">Strange “Stuff” <span>6</span></a></li>
-				<li class="subitem3"><a href="#">Automatic Fails <span>2</span></a></li>
-			</ul>
-		</li>
+		</li>		
 	</ul>
-
 </div>
-
 
 <button type="button" class="ct-btn white" onclick="facebooklogin(); return false;">로그인</button>
 <button type="button" class="ct-btn white" onclick="facebooklogout(); return false;">로그아웃</button>

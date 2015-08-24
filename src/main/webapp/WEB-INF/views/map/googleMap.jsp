@@ -13,17 +13,86 @@
     <link rel="stylesheet" type="text/css" href="/resources/style.css">          
 </head>
 <body>
-<h1>	Hello world!</h1>
+<h1>마커 위치 찍기</h1>
 <!--[if lt IE 7]>
 	<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 <%-- <P>  appKeyfacebook ${faceBookAppKey}. </P>
 <P>  appKeygoogle ${googleAppKey}. </P> --%>
-<div id="map"></div>
+
+<a href="/map">GoogleMapBasic</a>
+<a href="/map/googleMap2">GoogleMapSearch</a>
+
+<div id="map_canvas"></div>
+
+
+	<table border="1">
+		<tr>
+			<th width="100">위도</th>
+			<td width="400" id="lat"></td>
+		</tr>
+		<tr>
+			<th>경도</th>
+			<td id="lng"></td>
+		</tr>
+		<tr>	
+			<th>주소</th>
+			<td id="address"></td>
+		</tr>
+	</table>
+
 
 <script src="/resources/jquery-1.11.3.min.js"></script>    
 <script type="text/javascript">		
-function initMap() {
+
+$(document).ready(function() {
+    var latlng = new google.maps.LatLng(37.5640, 126.9751);
+    var myOptions = {
+  	      zoom : 12,
+  	      center : latlng,
+  	      mapTypeId : google.maps.MapTypeId.ROADMAP
+  	}
+    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    var marker = new google.maps.Marker({
+		position : latlng, 
+		map : map
+	});
+   
+    var geocoder = new google.maps.Geocoder();
+    
+    google.maps.event.addListener(map, 'click', function(event) {
+    	var location = event.latLng;
+    	geocoder.geocode({
+    		'latLng' : location
+    	},
+    	function(results, status){
+    		if( status == google.maps.GeocoderStatus.OK ) {
+    			$('#address').html(results[0].formatted_address);
+    			$('#lat').html(results[0].geometry.location.lat());
+    			$('#lng').html(results[0].geometry.location.lng());
+    		}
+    		else {
+    			alert("Geocoder failed due to: " + status);
+    		}
+    	});
+    	if( !marker ) {
+    		marker = new google.maps.Marker({
+    			position : location, 
+	    		map : map
+	    	});
+    	}
+    	else {
+    		marker.setMap(null);
+    		marker = new google.maps.Marker({
+    			position : location, 
+	    		map : map
+	    	});
+    	}
+    	map.setCenter(location);
+    });
+});
+
+/* function initMap() {
 	  var map = new google.maps.Map(document.getElementById('map'), {
 	    zoom: 4,
 	    center: {lat: -25.363882, lng: 131.044922 }
@@ -65,8 +134,9 @@ function initMap() {
 	    infowindow.open(marker.get('map'), marker);
 	  });
 	}
+	 */
 
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap" async defer></script>
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?v=3.exp&region=KR"></script>
 </body>
 </html>
