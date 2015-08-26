@@ -22,6 +22,7 @@
 
 <a href="/map">GoogleMapBasic</a>
 <a href="/map/googleMap2">GoogleMapSearch</a>
+<a href="/map/googleMap3">GoogleMapDraggable directions</a>
 
 <div id="map_canvas"></div>
 

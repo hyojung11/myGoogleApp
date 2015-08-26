@@ -35,4 +35,12 @@ public class MapController {
 		
 		return "map/googleMap2";
 	}
+	
+	@RequestMapping(value="/googleMap3", method = RequestMethod.GET)
+	public String getGoogleMap3(Model model) {
+		
+		logger.info("Welcome home! The client locale is ");	
+		
+		return "map/googleMap3";
+	}
 }

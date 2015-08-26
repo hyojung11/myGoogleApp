@@ -16,6 +16,8 @@
 <h1>위치 검색</h1>
 <a href="/map">GoogleMapBasic</a>
 <a href="/map/googleMap2">GoogleMapSearch</a>
+<a href="/map/googleMap3">GoogleMapDraggable directions</a>
+
 <input id="pac-input" class="controls" type="text" placeholder="Search Box">
 <div id=map_canvas></div>
     
